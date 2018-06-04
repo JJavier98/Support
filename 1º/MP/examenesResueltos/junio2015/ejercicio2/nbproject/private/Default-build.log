@@ -1,0 +1,5 @@
+g++ -g -c -o obj/prueba.o -I./include src/prueba.cpp
+src/prueba.cpp:2:19: error fatal: lista.h: No existe el fichero o el directorio
+compilación terminada.
+Makefile:8: recipe for target 'prueba.o' failed
+gmake: *** [prueba.o] Error 1

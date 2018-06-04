@@ -1,0 +1,234 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: title   start ]
+Juan Manuel González-Aurioles Fernández
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+Funciones
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load (functs);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+arithmetic(a,d,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+geometric(a,r,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+harmonic(a,b,c,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+geosum(a,r,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(geosum(1,1/4,i),i,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Fibonacci
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fib(6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(fib(i),i,0,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A0 : 4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A[n] := if n > 0 then (n)*A [n-1]+G(n) else A0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F(n) := n^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+G(n) := 2*n+1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(A[n],n,0,4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A0 : 1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A1 : 2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A[n] := if n > 1 then 2*A [n-1] + A[n-2] else if n > 0 then A1 else A0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist (A[n],n,0,7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Resolución de relaciones de recurrencia
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve\_rec(a[k]=a[k-1]+a[k-2],a[k],a[1]=1,a[2]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Solución general para grado 1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-1],a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve\_rec(a[n]=2*a[n-1] + a[n-2],a[n], a[0]=1, a[1]=2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 3
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve\_rec(a[n]=2*n*a[n-1],a[n], a[0]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve\_rec(a[n]=7*a[n-2] + 6*a[n-3],a[n],a[0]=0,a[1]=1,a[2]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+3
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve\_rec(a[n]=2*n*a[n-1],a[n], a[0]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+La 1 y 3 tienen coeficientes constantes por lo que son homogéneas no lineales porque sale un factorial.
+El 2 es una relación es relación lineal y de coeficientes constantes pero no homogénea.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 4
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-1]+b,a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Es homogénea,no lineal y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Es homogénea,lineal y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1]+d, a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es homogénea, no lineal y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=k*a[k-1], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Es homogénea, no es lineal por el factorial y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=a[k-1]+(k-1), a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Es homogénea,no lineal y de coeficientes constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]*a[k-1]=c, a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es homogénea, no es lineal pero si de coeficientes constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=a[k-1]*a[k-2], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No está bien definida
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 5
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sustituyendo a[k] por x^2, a[k-2] por 1 y a[k-1] por x nos da el polinimio asociado x^2-bx-c=0
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+p1:x^2-b*x-c;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(p1,x);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

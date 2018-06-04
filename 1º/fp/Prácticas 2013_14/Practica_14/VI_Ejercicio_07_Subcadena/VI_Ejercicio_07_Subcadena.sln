@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VI_Ejercicio_07_Subcadena", "VI_Ejercicio_07_Subcadena.vcxproj", "{EF8633EE-FF08-41DF-9E8E-61E4BEDC6F8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF8633EE-FF08-41DF-9E8E-61E4BEDC6F8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF8633EE-FF08-41DF-9E8E-61E4BEDC6F8B}.Debug|Win32.Build.0 = Debug|Win32
+		{EF8633EE-FF08-41DF-9E8E-61E4BEDC6F8B}.Release|Win32.ActiveCfg = Release|Win32
+		{EF8633EE-FF08-41DF-9E8E-61E4BEDC6F8B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

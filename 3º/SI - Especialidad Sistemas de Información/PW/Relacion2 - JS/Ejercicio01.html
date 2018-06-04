@@ -1,0 +1,61 @@
+<!--
+/*******************************************
+ *
+ * 2014 - Programación Web
+ * Grado en Ingeniería Informática
+ *
+ * Ernesto Serrano <erseco@correo.ugr.es>
+ *
+ *******************************************
+ *
+ * Relación de ejercicios 1 - CSS
+ *
+ *******************************************/
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ejercicio 01</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Relación de ejercicios 2">
+    <meta name="date" content="10-05-2014">
+    <meta name="keywords" content="HTML,JavaScript">
+    <meta name="author" content="Ernesto Serrano Collado">
+    
+    
+    <script type="text/javascript">
+      var ventanaHijo1;
+      function abrirVentanas(){
+        ventanaHijo1 = window.open("T_JS-opener-hijo1.html");
+      }
+      function pasarValor(){
+        var valor = document.getElementById("resultadoPadre").value;
+        ventanaHijo1.document.getElementById("resultadoHijo1").value = valor;
+        ventanaHijo1.document.getElementById("actualizadorHijo1").click();
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      Demostraci&oacute;n del funcionamiento de la propiedad opener del objeto 
+      window.
+      <br/>
+      La demo crea una ventana y pasa el valor que hay en el input al hijo para
+      que este opere con &eacutel y lo devuelva.
+      <br /><br />
+      <h3>Padre</h3>      
+      Paso 1) Este bot&oacute;n abre una ventana hijo
+      <br/>
+      <button id="botonPadre" onClick="abrirVentanas()">Abrir ventana</button>
+    </div>
+    <div id="areaDatos">
+      <br/>  
+      Paso 2) Escribe un n&uacute;mero y pincha en actualizar:
+      <br/>
+      <input id="resultadoPadre"  />
+      <button id="actualizadorPadre" onclick="pasarValor()">Actualizar </button>
+    </div>
+  </body>
+</html>

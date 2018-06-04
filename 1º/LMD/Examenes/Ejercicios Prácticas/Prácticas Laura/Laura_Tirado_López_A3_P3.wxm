@@ -1,0 +1,356 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: title   start ]
+Práctica 3. Conjuntos ordenados.
+Laura Tirado López
+1ºGII A3
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("E:/divisores.mac")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Elementos notables de un conjunto
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Consideramos el conjunto de los números naturales no nulos ordenado por divisibilidad. Es decir, a|b si 
+existe c perteneciente a N tal que b = a*c.
+Tomamos el conjunto A={48,60,64,84,52,100,96,128,156,88,212,176,360,512,296}. 
+Vamos a calcular sus elementos notables:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{48,60,64,84,52,100,96,128,156,88,212,176,360,512,296};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Cotas superiores o mayorantes:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+n:mayorantes(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si queremos comprobar si un número es mayorante, éste tiene que ser el mínimo común múltiplo de los 
+números del conjunto. Hacemos una lista llamando al comando divide.
+Usamos el comando listify para poder trabajar con el conjunto A en forma de lista (sustituye las llaves por 
+corchetes).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+B:listify(A)$
+makelist(divide(n,B[i]),i,1,length(B));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Cotas inferiores o minorantes:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minorantes(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si queremos comprobar si un número es minorante, éste tiene que ser el máximo común divisor de los 
+números del conjunto. Hacemos una lista llamando al comando divide.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(divide(B[i],2),i,1,length(B));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(divide(B[i],4),i,1,length(B));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Supremo e ínfimo(ambos son únicos):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El supremo es el menor de lo mayorantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+supremo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El ínfimo es el mayor de los minorantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+infimo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Máximo y mínimo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+maximo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minimo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El máximo y el mínimo tienen que pertenecer al conjunto. Como ni el ínfimo ni el supremo pertenecen al conjunto
+se dice que el conjunto no tiene ni máximo ni mínimo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Elementos maximales y minimales:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Son maximales porque no son divisores de ningún otro de los elementos del conjunto.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+maximales(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Son minimales porque no son divisibles por ningún otro de los elementos del conjunto.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minimales(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+¿Podrías predecir cuáles serían los elementos notables para el conjunto A U {4}?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+C:{4,48,60,64,84,52,100,96,128,156,88,212,176,360,512,296};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El 4 no influye para los mayorantes. En el caso de los minorantes, el 4 ahora sí pertenece a los minorantes, por tanto,
+ahora el conjunto si tiene mínimo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Cotas superiores o mayorantes:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+mayorantes(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Cotas inferiores o minorantes:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minorantes(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Supremo e ínfimo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+supremo(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+infimo(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Máximo y mínimo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+maximo(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minimo(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Elementos maximales y minimales:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+maximales(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minimales(C);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Diagramas de Hasse
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+A continuación vamos a definir una función para calcular el diagrama de Hasse de los divisores de un número positivo.
+Como es un grafo, cargamos el paquete graphs:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(graphs);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Un grafo viene definido por dos listas:
+una formada por los vértices y otra formada por los lados. 
+A su vez cada lado es una lista de longitud dos, que nos indica los dos vértices que une.
+Tomamos n=24.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+n:24;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Primero obtenemos la lista de nodos, en este caso son los divisores de 24:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Vn:divisors(n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ahora calculamos los lados:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Ln:cartesian_product(Vn,Vn);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El lado [a,b] formará parte del diagrama sólo si a|b y b/a es un número primo. Definimos una función para seleccionar
+estos lados:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lado(l):= is(mod(l[2],l[1])=0 and primep(quotient(l[2],l[1])));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por tanto el conjunto de lados es:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Ladosn:subset(Ln,lado);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+De esta forma ahora ya podemos definir el diagrama de Hasse:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hassen:create_graph(listify(Vn),listify(Ladosn),directed=true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ahora vamos a hacer una función para que nos dibuje el grafo de los divisores de n:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(n):= block([Vn,Ln,Ladosn,hasse],
+                Vn:divisors(n),
+                Ln:cartesian_product(Vn,Vn),
+                Ladosn:listify(subset(Ln,lado)),
+                hasse:create_graph(listify(Vn),Ladosn,directed=true),
+                draw_graph(hasse,show_id=true)
+            )$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Dibuja los diagramas de Hasse de:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+n=1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=16
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(16);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=24
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(24);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=54
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(54);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=30
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=42
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(42);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=36
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(36);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=128
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(128);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+n=210
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(210);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

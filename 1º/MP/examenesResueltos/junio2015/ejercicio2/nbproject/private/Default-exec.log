@@ -1,0 +1,28 @@
+called: g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/junio2015/jun2015ex2
+	g++
+	-g
+	-c
+	-o
+	obj/prueba.o
+	-I./include
+	src/prueba.cpp
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/junio2015/jun2015ex2
+	/usr/bin/g++
+	-g
+	-I./include
+	-E
+	src/prueba.cpp
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/junio2015/jun2015ex2
+	/usr/bin/g++
+	-g
+	-c
+	-o
+	obj/prueba.o
+	-I./include
+	src/prueba.cpp
+

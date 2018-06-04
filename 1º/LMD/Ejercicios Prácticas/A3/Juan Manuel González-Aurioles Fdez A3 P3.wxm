@@ -1,0 +1,275 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+load("D:/Universidad/2 Cuatrimestre/LMD/Prácticas/Practica 3 LMD 13_14/PrÃ¡ctica 3 LMD 13_14/divisores.mac")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A :{48, 60, 64, 84, 52, 100, 96, 128, 156, 88, 212, 176, 360, 512, 296};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+mayorantes(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minorantes(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+supremo(A); infimo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+maximo(A); infimo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+maximales(A); minimales(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+B : listify(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(divide(226133107200, B[n]),n,1,length(B));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(divide (B[n],2),n,1,length(B));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Entre 2 por ser minorante
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio: El 4 no afecta porque no aporta información ya que por ejemplo,
+el 4 es divisor de 48.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El 4 sería un mínimo, porque el ínfimo se alcanzaría en el conjunto.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+C: append(A,{4});
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(graphs);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n:24;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Vn:divisors(n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Ln:cartesian_product(Vn,Vn);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lado(l):=is (mod(l[2],l[1])=0 and primep(quotient(l[2],l[1])));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Ladosn:subset(Ln,lado);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hassen:create_graph(listify(Vn),listify(Ladosn),directed=true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(n):=block([Vn,Ln,Ladosn,hasse],Vn:divisors(n),Ln:cartesian_product(Vn,Vn),
+
+
+Ladosn:listify(subset(Ln,lado)),
+
+
+hasse:create_graph(listify(Vn),Ladosn,directed=true),draw_graph(hasse,show_id=true));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(16);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(24);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(54);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(42);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(128);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(210);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 2: Calcula todos los números n menor o iguales a 200 tales que
+el conjunto de los divisores de n es un conjunto totalmente ordenado.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+primos(n):= for i:1 thru n do if primep(i)=true then print(i);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+primos(200);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Tendrán que cumplirlo todos los primos y sus respectivos múltiplos hasta llegar a 200.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+D2:{2,4,8,16,32,64,128};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D3:{3,9,27,81};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D5:{5,25,125};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D7:{7,49};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D11:{11,121};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D13:{13,169};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 3:
+Sea X: (1,2,3,4,5,6,7) e Y: X x X x X. Consideramos en X el orden lexicográfico. 
+Dadas las siguiente parejas x,t pertenecientes a Y de elementos de Y determina quien es mayor, y encuentra
+el conjunto de todos lo elementos de Y comprendidos entre x e y.
+
+x = (4,2,1), y = (5,6,2)
+x = (1,4,7), y = (7,4,1)
+x = (6,4,5), y = (2,4,2)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X: {1,2,3,4,5,6,7}; Y:listify(cartesian_product(X,X,X));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion(x):= for i:1 thru length(Y) do
+              if (is(x=Y[i]))=true then print(i);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion([4,2,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion([5,6,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(Y2[n],n,155,233);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+(5,6,2) es mayor
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion([1,4,7]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion([7,4,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(Y2[n],n,28,316);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+(7,4,1) es mayor
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+3.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion([6,4,5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion([2,4,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(Y2[n],n,71,271);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+(6,4,5) es mayor
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Consideramos ahora el orden producto en Y.Repite el ejercicio anterior para las siguientes
+parejas de elementos:
+
+x = (4,2,1), y = (5,6,2)
+x = (1,4,7), y = (7,4,1)
+x = (1,4,7), y = (7,4,7)
+x = (6,4,5), y = (2,4,2)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El orden producto viene dado por lo siguiente: (a,b) <= (c,d) si y sólo si (a <= c) && (b <= d)
+
+Por lo tanto:
+El primer elemento de la primera pareja es menor que el segundo, pues 4 < 5 ; 2 < 6 y 1 < 2 
+En la segunda pareja no hay elemento menor que el otro, porque 1 < 4 ; 4 = 4 pero 7 > 1
+En la tercera pareja el primer elemento también es menor que el otro porque 1 < 7 ; 4 = 4 y 7 = 7
+En la cuarta pareja es el segundo elemento el menor, porque 6 > 2 ; 4 = 4 y 5 > 1
+
+Esto se aplica a los anteriores ejemplos tambien.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

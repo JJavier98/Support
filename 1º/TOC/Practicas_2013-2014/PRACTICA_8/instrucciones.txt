@@ -1,0 +1,15 @@
+Hola a todos.
+
+Para la realización de la práctica 8 de TOC debéis seguir las siguientes instrucciones:
+
+1º) Descargar CS1_VersiónEstudiante_LW4_Vb desde el directorio donde está en la plataforma SWAD. El fichero está comprimido. Hay que descomprimirlo para obtener el fichero en formato *.cct que es el que acepta el simulador LogicWorks.
+
+2º) Ejecutar en el simulador LogicWorks CS1_VersiónEstudiante_LW4_Vb.
+
+3º) Seguir las instrucciones de la práctica 8.
+
+4º) Cargar el programa de prueba y ejecutarlo paso a paso y rellenar la hoja con las instrucciones, ciclos y variaciones de registros que le entregue el profesor y que también está disponible en SWAD.
+
+Un saludo.
+
+Manuel Rodríguez

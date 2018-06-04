@@ -1,0 +1,55 @@
+called: g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/septiembre2013/sep2013ej1
+	g++
+	-g
+	-c
+	-o
+	obj/prueba.o
+	src/prueba.cpp
+	-I./include
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/septiembre2013/sep2013ej1
+	/usr/bin/g++
+	-g
+	-I./include
+	-E
+	src/prueba.cpp
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/septiembre2013/sep2013ej1
+	/usr/bin/g++
+	-g
+	-c
+	-o
+	obj/prueba.o
+	/home/gte/mgomez/.ccache/tmp/prueba.stdout.poldo.6141.YTSzYO.ii
+
+called: g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/septiembre2013/sep2013ej1
+	g++
+	-g
+	-c
+	-o
+	obj/entero.o
+	-I./include
+	src/entero.cpp
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/septiembre2013/sep2013ej1
+	/usr/bin/g++
+	-g
+	-I./include
+	-E
+	src/entero.cpp
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2015-2016/metProg/examenesPrevios/septiembre2013/sep2013ej1
+	/usr/bin/g++
+	-g
+	-c
+	-o
+	obj/entero.o
+	-I./include
+	src/entero.cpp
+

@@ -1,0 +1,138 @@
+<!--
+/*******************************************
+ *
+ * 2014 - Programación Web
+ * Grado en Ingeniería Informática
+ *
+ * Ernesto Serrano <erseco@correo.ugr.es>
+ *
+ *******************************************
+ *
+ * Relación de ejercicios 2 - Javascript
+ *
+ *******************************************/
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Relación de ejercicios 2: Ejercicios</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Relación de ejercicios 2">
+    <meta name="date" content="10-05-2014">
+    <meta name="keywords" content="HTML,JavaScript">
+    <meta name="author" content="Ernesto Serrano">
+    
+    <!-- Incorporamos el archivo donde tenemos las funciones -->
+    <script type="text/javascript" src="ejercicios.js"></script>
+  </head>
+  <body>
+    <h4>Ejercicio 1</h4>
+      <input type="number" id="campo1" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo2" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo3" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo4" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo5" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo6" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo7" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo8" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo9" placeholder="Introduzca nota" /><br />
+      <input type="number" id="campo10" placeholder="Introduzca nota" /><br />
+      <button onClick="ejercicio1()">Mostrar</button>
+
+    <h4>Ejercicio 2</h4>
+      <input type="number" id="altura1" placeholder="Introduzca altura" /><br />
+      <input type="number" id="altura2" placeholder="Introduzca altura" /><br />
+      <input type="number" id="altura3" placeholder="Introduzca altura" /><br />
+      <input type="number" id="altura4" placeholder="Introduzca altura" /><br />
+      <input type="number" id="altura5" placeholder="Introduzca altura" /><br />
+      <button onClick="ejercicio2()">Promedio</button>
+
+    <h4>Ejercicio 3</h4>
+      <input type="number" id="sueldo1" placeholder="Introduzca sueldo" /><br />
+      <input type="number" id="sueldo2" placeholder="Introduzca sueldo" /><br />
+      <input type="number" id="sueldo3" placeholder="Introduzca sueldo" /><br />
+      <input type="number" id="sueldo4" placeholder="Introduzca sueldo" /><br />
+      <input type="number" id="sueldo5" placeholder="Introduzca sueldo" /><br />
+      <button onClick="ejercicio3()">Sueldo</button>
+ 
+     <h4>Ejercicio 4</h4>
+      <div id="ejercicio4"></div>
+      <button onClick="ejercicio4()">Mostrar</button>
+
+      <h4>Ejercicio 5</h4>
+      <div id="ejercicio5"></div>
+      <button onClick="ejercicio5()">Mostrar</button>
+
+    <h4>Ejercicio 6</h4>
+      <select id="lista1" multiple="multiple">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <select id="lista2" multiple="multiple">
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+      <button onClick="ejercicio6()">Comprobar listas</button>
+
+    <h4>Ejercicio 7</h4>
+      <input type="number" id="par1" placeholder="Introduzca numero" /><br />
+      <input type="number" id="par2" placeholder="Introduzca numero" /><br />
+      <input type="number" id="par3" placeholder="Introduzca numero" /><br />
+      <input type="number" id="par4" placeholder="Introduzca numero" /><br />
+      <input type="number" id="par5" placeholder="Introduzca numero" /><br />
+      <input type="number" id="par5" placeholder="Introduzca numero" /><br />
+      <button onClick="ejercicio7()">Pares</button>
+
+    <h4>Ejercicio 8</h4>
+      <input type="number" id="lado" placeholder="Introduzca lado" /><br />
+      <button onClick="ejercicio8_area()">Area</button>
+      <button onClick="ejercicio8_perimetro()">Perimetro</button>
+    <h4>Ejercicio 9</h4>
+      <input type="number" id="ejercicio9" placeholder="Introduzca numero" /><br />
+      <button onClick="ejercicio9()">Digitos</button>
+    <h4>Ejercicio 10</h4>
+      <input type="number" id="promedio1" placeholder="Introduzca numero" /><br />
+      <input type="number" id="promedio2" placeholder="Introduzca numero" /><br />
+      <input type="number" id="promedio3" placeholder="Introduzca numero" /><br />
+      <button onClick="ejercicio10()">Promedio</button>
+    <h4>Ejercicio 11</h4>
+      <button onClick="ejercicio11()">Suma</button>
+    <h4>Ejercicio 12</h4>
+      <input type="date" id="fecha" placeholder="Introduzca fecha" />
+      <button onClick="ejercicio12()">Cuatrimestre</button>
+
+    <h4>Ejercicio 13</h4>
+      <form>
+        <button onClick="ejercicio13()">1</button>
+        <button onClick="ejercicio13()">2</button>
+        <button onClick="ejercicio13()">3</button>
+
+      </form>
+
+    <h4>Ejercicio 14</h4>
+      <input type="password" id="password1" placeholder="Introduzca password" /><br />
+      <input type="password" id="password2" placeholder="Introduzca password" /><br />
+      <button onClick="ejercicio14()">Validar</button>
+
+    <h4>Ejercicio 15</h4>
+      <a href="#" onClick="ejercicio15()">Enlace</a>
+    <h4>Ejercicio 16</h4>
+      <button onClick="ejercicio16()">Ventana</button>
+    <h4>Ejercicio 17</h4>
+      <button onClick="ejercicio17()">Comprobar cookies</button>
+    <h4>Ejercicio 18</h4>
+      <button onClick="ejercicio18()">Suma</button>
+
+    <h4>Ejercicio 19</h4>
+      <button onClick="ejercicio19()">Edades</button>
+
+    <h4>Ejercicio 20</h4>
+      <input type="test" id="ejercicio20" placeholder="Introduzca DNI" />
+      <button onClick="ejercicio20()">Comprobar</button>
+
+  </body>
+</html>

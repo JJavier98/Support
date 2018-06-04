@@ -1,0 +1,920 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: title   start ]
+Práctica 6. Lógica de proposiciones.
+Laura Tirado López
+1ºGII A3
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+Primero cargamos el paquete logic.lisp:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load("F:/logic.lisp")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Tablas de verdad
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: fold    start ] */
+
+/* [wxMaxima: comment start ]
+Usaremos las letras P, Q, R ... para denotar variables proposicionales, es decir, fórmulas atómicas. 
+Algunos ejemplos de proposiciones lógicas escritas con la sintaxis que acabamos de definir son:
+
+    true, false, not P, P or Q, P implies (Q and R), P nand Q, (P eq Q) eq R
+
+donde true denota una proposición tautológica y false una proposición contradictoria o contradicción.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El valor de verdad que puede tomar una proposición se representa también mediante true ó false.
+Esto no supone ningún problema, pues siempre que nos encontremos true o false, el contexto nos dirá si se 
+trata de una proposición o bien de un valor de verdad.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Vamos a usar el comando characteristic_vector(prop) que nos proporciona la tabla de verdad de la proposición prop.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies (Q implies P));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Este último ejemplo es una tautología.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Para el operador OR no es necesario el uso de paréntesis dado que cumple la propiedad asociativa:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P or Q or R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+De igual manera, el operador XOR también verifica la propiedad asociativa:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P xor (Q xor R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P xor Q) xor R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P xor Q xor R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ver que el operador IMPLIES no verifica la propiedad asociativa:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies (Q implies R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies Q) implies R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q implies R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos comprobar que escribir P implies Q implies R es lo mismo que si escribimos (P implies Q) implies R.
+Se asigna la prioridad de izquierda a derecha en caso de empate entre operadores.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Éste comando admite también el siguiente formato:
+
+    characteristic_vector(prop,var_1,...,var_n)
+
+que nos proporciona la tabla de verdad de la proposición prop respecto a las variables var_1,...,var_n que le indiquemos.
+Por ejemplo, es indiferente escribir cualquiera de los dos comandos siguientes:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,P,Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos comprobar que el orden de las variables indicadas también influye a la hora de construir la tabla:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,Q,P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+También podemos añadir otras variables:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,P,Q,R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si una fórmula depende de dos variables y sólo añadimos una de ellas la tabla de valores resultantes se expresa 
+en función de la otra variable.
+En este caso como la proposición depende también de Q, la tabla de valores se expresa en función de Q:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ahora ya entenderá la salidas devueltas por los comandos siguientes:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(true,P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(true,P,Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Dos proposiciones lógicas alfa y beta pertenecientes a un lenguaje de proposiciones L, se dice que son
+equivalentes si para cualquier interpretación I sobre L se verifica que I(alfa) = I(beta). Dicho de otro modo,
+alfa y beta son equivalentes si la proposición alfa EQ beta es una tautología.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El comando logic_equiv(expr_1,expr_2) devuelve true si las proposiciones representadas por expr_1 y expr_2 
+son equivalentes, y false en caso contrario.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Claramente, la proposición representada por expr es una tautología si y sólo si logic_equiv(expr, true) devuelve true, 
+y es una contradicción si y sólo si logic_equiv(expr, false) devuelve true.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P implies Q, not P or Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P implies (Q implies P), true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P and not P, false);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: fold    start ] */
+
+/* [wxMaxima: comment start ]
+Para cada una de las proposiciones siguientes, determine si es tautología, satisfacible, refutable ó
+contradicción:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(not(P and (not Q) and R) implies (R implies (P implies Q)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Tautología.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P or Q) implies (P and Q));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Contingente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+3.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((Q or (not R)) implies (P implies P));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Tautología.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+4.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P and Q) and (not (notP implies Q)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Contradicción.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+5.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P eq (Q eq (P eq Q)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Tautología
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+6.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q or R)) or (P implies (Q and R)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Refutable.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+7.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies Q) implies ((Q implies R) implies (P implies R)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Tautología.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+8.
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(not((P implies Q) and (P implies (not Q))));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Contingente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: fold    end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: fold    start ] */
+
+/* [wxMaxima: comment start ]
+Dado el conjunto de proposiciones
+   omega = {P implies (Q and R), Q implies S, P and T},
+determine cuáles de las proposiciones siguientes son consecuencia lógica de omega:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and (not S));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and ((not T) and R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+3.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and (not S implies ((not P) or T)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+4.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and ((not T) or Q));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+5.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and (S eq Q));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+6.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and ((not Q) and S));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+7.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and (S implies Q));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+8.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P implies (Q and R)) and (Q implies S) and (P and T) and (S or (not R)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es consecuencia lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: fold    end   ] */
+
+/* [wxMaxima: fold    end   ] */
+
+/* [wxMaxima: section start ]
+Proposiciones equivalentes
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Los siguientes comandos transforman proposiciones en otras equivalentes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Sabemos que toda función booleana f se representa de modo único como un polinomio en el cual sólo pueden aparecer 
+operadores xor y and (·) así como la constante lógica 1 que nosotros aquí estamos representando por true. 
+Éste es el polinomio de Gegalkine de f. Esta misma idea también es aplicable a las proposiciones lógicas.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El comando zhegalkin_form(expr) calcula el polinomio de Gegalkine de la proposición representada por expr.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P and Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P or Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P implies (not Q implies R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si la proposición dada ya es su propio polinomio de Gegalkine, la respuesta es dicha proposición.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P and Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P xor Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form((P and Q) xor true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form((P and Q and R) xor P xor (Q and R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Nota: el operador AND tiene más prioridad que el operador XOR.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El comando boolean_form(expr) escribe la proposición dada por expr sólo en función de los operadores NOT, OR y AND. 
+La única excepción se produce cuando expr es true ó false.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form((P implies Q) implies R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(((P implies Q) implies R) implies S);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como podemos ver, no se intenta simplificar más nada. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El comando demorgan(expr) aplica las leyes de De Morgan a expr.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(not (P or Q));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(not (P and Q));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(not (P and Q and R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(not not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Éste comando hay que usarlo tras haber aplicado boolean_form, pues de lo contrario no transforma la expresión.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form((P implies Q) implies R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(((P implies Q) implies R) implies S);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_form(true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Aunque la respuesta puede que no sea todo lo satisfactoria que uno espera.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+demorgan(boolean_form(((P implies Q) implies R) implies S));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Otro comando es logic_simp(expr) que devuelve una versión simplicada equivalente a expr:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_simp(not not not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_simp(P or (Q or false or (P or Q)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_simp(P xor true xor Q xor true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Pero no siempre es útil:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_simp(boolean_form(((P implies Q) implies R) implies S));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Imitando lo que ocurre con las funciones booleanas, toda proposición lógica se puede expresar usando los operadores lógicos 
+¬, AND, OR. De este modo obtenemos la forma normal conjuntiva y la forma normal disyuntiva de una proposición lógica. 
+Éstas se obtienen con los comandos pcnf y pdnf, respectivamente.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(P and Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(P and Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(P or Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(P or Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(P nor Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(P nor Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(P nand Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(P nand Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(P xor Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(P xor Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pcnf(((P implies Q) implies R) implies S);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pdnf(((P implies Q) implies R) implies S);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Un conjunto de operadores lógicos, A, se dice que es funcionalmente completo, si cualquier operador lógico se puede 
+expresar en términos de los operadores pertenecientes a A.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El comando functionally_complete(expr_1,...,expr_n) devuelve true sii {expr_1,...,expr_n}
+define un sistema funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Por ejemplo, sabemos que el conjunto {not, and, or} es funcionalmente completo.
+Lo comprobamos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P or Q, not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+También toda proposición lógica alfa se expresa en términos de los operadores true, and, xor, resultando el polinomio 
+de Gegalkine de alfa.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Nótese que si suprimimos la constante true, ya no tenemos un conjunto funcionalmente completo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P xor Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Los conjuntos {nor} y {nand} también son funcionalmente completos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P nor Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P nand Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si a un conjunto funcionalmente completo le añadimos un nuevo operador, resulta otro conjunto funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P nor Q, P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Un conjunto de operadores, A, se dice que es una base lógica, si A es funcionalmente completo, y al suprimir cualquier 
+operador en A, el conjunto resultante ya no es funcionalmente completo. 
+También se dice que A es un conjunto funcionalmente completo minimal.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos comprobar que un conjunto de operadores A es una base lógica de manera artesanal usando el comando 
+functionally_complete. 
+Para ello vemos que ningún subconjunto propio de A es funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Compruebe aplicando la idea expuesta en el párrafo anterior que el conjunto de operadores {and, xor, true} es 
+funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Creamos el conjunto de operadores:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{P and Q, P xor Q, true};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Comprobamos que subconjuntos son funcionalmente completos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+B:subset(A,functionally_complete);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ver que no hay ningún subconjunto que sea funcionalmente completo, por lo tanto, el conjunto de operadores 
+{and, xor, true} es funcionalmente completo y además es una base lógica. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Otra posibilidad consiste en utilizar el comando logic_basis(expr_1,...,expr_n) que devuelve true sii {expr_1,...,expr_n}
+ forman una base lógica.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, P or Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, P or Q, not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_basis(P or Q, not P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_basis (P and Q, P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Justique que el conjunto de operadores {¬, implies} es una base lógica, primero teóricamente, y a continuación usando Maxima.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_basis(not P, P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Represente cada una de las proposiciones siguientes en función de los operadores del conjunto {¬, implies} y 
+compruebe en cada caso que la expresión obtenida es equivalente a la inicial.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+a) P and Q
+En función de {not, implies}:
+not(P implies (not Q))
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P and Q, not(P implies (not Q)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+b) P and Q and R
+En función de {not, implies}:
+not (P implies (Q implies not R))
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P and Q and R, not (P implies (Q implies not R)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+c) P or Q
+En función de {not, implies}:
+not P implies Q
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P or Q, not P implies Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+d) P or Q or R
+En función de {not, implies}:
+not (not P implies Q) implies R
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P or Q or R, not (not P implies Q) implies R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+e) P eq Q
+En función de {not, implies}:
+not ((P implies Q) implies not (Q implies P))
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P eq Q, not ((P implies Q) implies not (Q implies P)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+3.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Encuentre una proposición lógica que se represente de dos formas distintas en función de los operadores ¬ e implies.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+P or Q:
+
+1. not P implies Q
+2. not Q implies not (not P)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P or Q, not Q implies not (not P));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+4.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Si alfa es una proposición lógica que es una contradicción, justique que toda proposición lógica se puede expresar 
+usando el operador lógico implies y alfa. A continuación compruebe ésto mismo utilizando Maxima.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

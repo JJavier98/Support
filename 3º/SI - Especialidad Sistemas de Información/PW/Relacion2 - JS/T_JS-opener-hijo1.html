@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>Hijo 1: Ejemplo de uso de la propiedad opener</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+      function incrementarDevolver(){
+        var valor = parseInt(document.getElementById("resultadoHijo1").value);
+        opener.document.getElementById("resultadoPadre").value = ++valor;
+        opener.document.getElementById("actualizadorPadre").click();
+      }
+    </script>
+  </head>
+  <body>
+
+    <div id="areaDatos">
+      <h3>Hijo</h3>
+      Si se pulsa en este bot&oacute;n, el valor aqu&iacute; escrito se 
+      incrementa en uno y se devuelve al padre. 
+      <br/>
+      A continuaci&oacute;n, el hijo 
+      pulsa el bot&oacute;n actualizar del padre y &eacute;ste repite el proceso.
+      <br />
+      <br/>
+      Ejemplo: Si el valor es 50, al padre se le env&iacute;a el 51, y 
+      &eacute;ste reenv&iacute;a ese 51 al hijo, el hijo lo incrementa de nuevo 
+      y devuelve al padre el 52
+      <br /> <br /> 
+      <input id="resultadoHijo1"/>
+      <button id="actualizadorHijo1"  
+              onClick="incrementarDevolver()">Actualizar </button>
+    </div>
+  </body>
+</html>

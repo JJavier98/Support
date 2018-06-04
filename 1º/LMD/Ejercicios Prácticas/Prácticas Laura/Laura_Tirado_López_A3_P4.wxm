@@ -1,0 +1,550 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: title   start ]
+Práctica 4. Álgebras de Boole.
+Laura Tirado López
+1ºGII A3
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Ejemplos de álgebras de Boole finitas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Dado un entero positivo n, denotamos por D(n) el conjunto de los divisores positivos de n. En Maxima podemos 
+obtener fácilmente el conjunto D(n) mediante el comando divisors. Veamos algunos ejemplos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sabemos que D(n) es un álgebra de Boole si y sólo si n factoriza como producto de (uno ó más) primos distintos,
+siendo las operaciones a + b = avb = mcm(a, b), a * b = a^b = mcd(a, b) y complemento de a = n/a .
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por tanto D(12) no es un álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Vemos que D(2014) es un álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(2017);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Vemos pues que 2017 es un número primo, y así D(2017) es un álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+A continuación escribimos una función esAB(n), que se supone se aplica a un entero positivo n, y devuelve true si D(n)
+es un álgebra de Boole, y devuelve false en caso contrario.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(n):=block([lisf,i,long], 
+         lisf:ifactors(n),
+         long:length(lisf),
+         if is(apply("*",makelist(lisf[i][2],i,1,long))=1) then true 
+         else false)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Probamos la función con los ejemplos anteriores:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(2017);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+A continuación calculamos todos los enteros 2 <= n <= 50 tales que D(n) es un álgebra de Boole. Para ello primero creamos 
+el conjunto X formado por todos los enteros entre 2 y 50. A continuación obtenemos el subconjunto Y de X formado 
+por aquellos elementos que hacen que la función esAB valga true.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:setify(makelist(i,i,2,50))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:subset(X,esAB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ahora factorizamos los elementos del conjunto Y calculado, y constatamos que cada uno de ellos o bien es primo 
+o es un producto de primos distintos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(listify(Y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 1
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Obtenga todos los enteros 100 <= n <= 400 tales que D(n) es un álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:setify(makelist(i,i,100,400))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:subset(X,esAB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(listify(Y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ponerlo en una función:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+TrueAB(n,m):=block([X,Y,i],
+X:setify(makelist(i,i,n,m)),
+Y:subset(X,esAB),
+return (Y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+TrueAB(100,400);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 2
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Obtenga todos los enteros 100 <= n <= 400 tales que D(n) no es un álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:setify(makelist(i,i,100,400))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:subset(X,esAB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Z:setdifference(X,Y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(listify(Z));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ponerlo en una función:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+FalseAB(n,m):=block([X,Y,i],
+X:setify(makelist(i,i,n,m)),
+Y:subset(X,esAB),
+Z:setdifference(X,Y),
+return (Z));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+FalseAB(100,400);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sabemos que dos álgebras de Boole finitas con el mismo cardinal son isomorfas ó equivalentes, lo cual se traduce en que 
+ambas tienen el mismo diagrama de Hasse, salvo los nombres de los elementos. A continuación vamos a dibujar los 
+diagramas de Hasse de las primeras álgebras de Boole finitas, omitiendo los nombres de los elementos. 
+Para ello comenzamos cargando el paquete graphs de Maxima.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(graphs);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw_graph(cube_graph(1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El dibujo obtenido representa todas las álgebras de Boole de la forma D(n), siendo n un número primo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+draw_graph(cube_graph(2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El dibujo obtenido representa todas las álgebras de Boole de la forma D(n), siendo n = p1 * p2, producto de dos números
+primos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+draw_graph(cube_graph(3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El dibujo obtenido representa todas las álgebras de Boole de la forma D(n), siendo n = p1 * p2 * p3, 
+producto de tres números primos distintos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Entonces, dadas dos álgebras de Boole D(m) y D(n), ¿cómo podemos saber si éstas son o no isomorfas?
+D(m) y D(n) son isomorfas si y sólo si el número de primos que aparece en la factorización de m es igual 
+que el número de primos que aparece en la factorización de n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Implementamos una función que lleva a cabo esta comprobación. Ojo, estamos suponiendo que D(m) y D(n) son ya 
+álgebras de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+iso(m,n):= is(length(ifactors(m)) = length(ifactors(n)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El comando ifactors(n) nos devuelve
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+iso(51,155);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(51); factor(155);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+iso(10,16278240338897);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(10); factor(16278240338897);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+iso(210,3565271);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(210); factor(3565271);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+En un álgebra de Boole finita todo elemento distinto de 0 se escribe como suma de átomos y todo elemento distinto de 1 
+se escribe como producto de coátomos (es decir, complementos de átomos). En el caso de que nuestra álgebra de Boole 
+venga dada como D(n), sabemos que 0 = 1 y 1 = n. Además los átomos son precisamente los primos que dividen a n, 
+mientras que los coátomos son todos los números de la forma n/p , siendo p un átomo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Vamos ahora a definir una función atomos(n) para obtener los átomos de D(n), suponiendo que sea un álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(n):=block([lis,long],
+        lis:ifactors(n),
+        long:length(lis),
+        setify(makelist(lis[i][1],i,1,long)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(892392217);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si D(n) es álgebra de Boole y d pertenece a D(n), con d != 1, este mismo comando nos permite obtener el conjunto 
+de átomos {a1, a2, . . . , ak} incluido en  D(n) tal que d = a1 + a2 + ... + ak.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Comprobamos en primer lugar que D(210) es un álgebra de Boole, y que 70 pertenece a la misma.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(210);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+elementp(70,divisors(210));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(70);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Para comprobar que el supremo de tales átomos es 70, escribimos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lcm(listify(%));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Es decir, hemos calculado el mcm de todos los divisores primos de 70. Nótese que la salida del comando atomos es un 
+conjunto, y hemos tenido que transformarlo en una lista para poder aplicarle el comando lcm.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 3
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Compruebe que D(1741209542339) es un álgebra de Boole, que d = 1399667 pertenece a la misma, y calcule los átomos que 
+aparecen en la descomposición de d.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(1741209542339);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+elementp(1399667,divisors(1741209542339));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(1399667);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 4
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Calcule el entero positivo más pequeño n que verifica simultáneamente las siguientes condiciones: D(n) es un 
+álgebra de Boole de cinco átomos y 10^5 <= n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+CincoAtomos(n) := if length(ifactors(n))=5 then true else false$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+X:setify(makelist(i,i,10^5,120000))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:subset(X,esAB)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Z:subset(Y,CincoAtomos);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El primer entero que verifica ambas condiciones es 100110.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Análogamente al comando átomos, ahora definimos el comando coatomos(n) que nos permitirá obtener los coátomos de D(n):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(n) := block([la],
+                la:listify(atomos(n)),
+                setify(makelist(quotient(n,la[k]),k,1,length(la))))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Probamos este comando:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(210);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(892392217);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por definición, el producto de todos los elementos (máximo común divisor) pertenecientes al conjunto coatomos(n) 
+tiene que ser igual a 1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:coatomos(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Utilizamos el comando gcd para calcular el máximo común divisor:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+gcd(gcd(6,10),15);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si D(n) es un álgebra de Boole y d pertenece a D(n) (siendo distintos d y n), podemos obtener el conjunto de coátomos de D(n) 
+tal que d = c1 * c2 * ... * cr mediante el comando coatomoss(d,n):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomoss(d,n):= block([lis,long],
+                    lis:ifactors(quotient(n,d)),
+                    long:length(lis),
+                    setify(makelist(quotient(n,lis[i][1]),i,1,long)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomoss(2,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+gcd(6,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomoss(1,210);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Toda álgebra de Boole finita también puede ser de la forma partes de un conjunto. Utilizamos el comando powerset(X) 
+para calcular el conjunto potencia de un conjunto X:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:{1,2,3,4,5};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+powerset(X);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Vamos a usar los comandos union, intersection y setdifference:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{2,4,5};
+B:{1,2,5};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Suma de A y B:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+union(A,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Producto de A y B:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+intersection(A,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Complemento de A:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+setdifference(X,A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Complemento de B:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+setdifference(X,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Optimización de funciones booleanas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Para realizar con Maxima una minimización de funciones booleanas siguiente el método tabular de Quine-McCluskey, 
+debemos acudir al conjunto de paquetes "Discrete":
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load("C:/Users/Flu/Documents/UGR/LMD/andrejv-discrete.mac-bcaeb1c/logic.mac")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("C:/Users/Flu/Documents/UGR/LMD/andrejv-discrete.mac-bcaeb1c/discrete.mac")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Vamos a minimizar ahora una función:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_minimize((x and y) or (not x and y) or (x and not y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+boolean_minimize((not x and not y and not z) or (x and not y and not z) or (not x and y and not z) or
+(not x and not y and z) or (x and y and not z));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 7
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Obtenga una expresión mínima como suma de productos para la función booleana:
+f(x1...x7) = sumatoria m(0,2,14,15,42,43,44,45,90,91,94,100,101,111,103,123,124,127)
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

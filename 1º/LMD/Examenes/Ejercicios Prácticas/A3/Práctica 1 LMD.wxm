@@ -1,0 +1,97 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.4 ] */
+
+/* [wxMaxima: title   start ]
+Práctica 1 LMD
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+Sumas:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i,i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i,i,1,n),simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(1/((2*i-1)*(2*i+1)),i,1,n),simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load (simplify\_sum);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+simplify_sum(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum((7^n)-1,i,1,n),simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i^2,i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i^3,i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(2*i-1,i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(1/(2^i),i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Múltiplos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista1:makelist((7^n-1)/6, n,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+7^(n+1)-1 -(7^n -1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se comprueba que 7^n-1 es divisible entre 6
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista2:makelist((7^(2*n)+(16*n)-1)/64, n,1,20);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(7^(2*(n+1))+16*((n+1)-1)-(7^(2*n)+(16*n)-1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+divide(48*(7^n)^2+1,64);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

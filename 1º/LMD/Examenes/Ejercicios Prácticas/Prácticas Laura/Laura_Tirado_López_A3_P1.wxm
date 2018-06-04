@@ -1,0 +1,321 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: title   start ]
+Práctica 1. Inducción.
+Laura Tirado López
+1ºGII A3
+
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Suma de sucesiones
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Suma de los n primeros números naturales. Utilizamos el comando sum:
+sum(término general, índice, inicio del índice, final del índice)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i,i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Con el comando simpsum nos devuelve el límite de la suma:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i,i,1,n), simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+En otros casos esta estrategia no funciona para calcular el límite de sucesiones:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(1/((2*i-1)*(2*i+1)),i,1,n),simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+En estos casos cargamos el paquete "simplify_sum":
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(simplify_sum);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+simplify_sum(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio:
+Calcula el término general en el resto de los ejemplos anteriores.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo 2. 1+2^2+3^2+...+n^2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i^2,i,1,n), simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo 3. 1+2^3+3^3+...+n^3
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i^3,i,1,n), simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo 4. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(2*i-1,i,1,n), simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo 5. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(1/2^i,i,1,n), simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Hipótesis de inducción
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Para comprobar que una propiedad se verifica primero hacemos una lista con el comando makelist que recibe
+cuatro argumentos:
+makelist(término general, índice, inicio del índice, final de índice)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo: 
+Probar que para todo número natural se cumple 7^n -1 es múltiplo de 6.
+Hacemos una lista cuyo término general sea 7^n-1/6 para comprobar si son números enteros:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist((7^n-1)/6,n,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como todos son enteros sabemos que se verifica la propiedad para los primeros 30 números naturales.
+Suponiendo que se cumple que 7^n - 1 es múltiplo de 6, hipótesis de inducción, tenemos que probar que tambiém
+se cumple 7^(n+1) - 1 es múltiplo de 6. 
+Vamos a comprobar que ocurre con la diferencia:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+7^(n+1)-1 - (7^n-1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si simplificamos con el comando rat:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ver que es múltiplo de 6.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Para hacer hipótesis de inducción primero hacemos una lista de los primeros números naturales para comprobar
+si la condición se cumple. A continuación restamos dos términos consecutivos, n+1 - n, y comprobamos si se
+cumple para todo n. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejemplos
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo 2: 7^2*n + 16*n - 1 es múltiplo de 64.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist((7^(2*n) + 16*n - 1)/64,n,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+7^(2*(n+1)) + 16*(n+1) - 1 - (7^(2*n) + 16*n - 1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%/64);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ahora tendríamos que comprobar que el numerador es múltiplo de 4. Lo probamos de nuevo por inducción.
+Como para n=0, podemos ver que se cumple, volvemos a restar dos términos consecutivos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+3*7^(2*(n+1))-3*7^(2*n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como 144 es múltiplo de 4, se cumple la propiedad.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo 3: a^(2*n) - b^(2*n) es divisible por a+b.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Esta vez vamos a usar otros comandos como divide con n=1. El comando divide lo usamos cuando rat no nos da 
+la suficiente información:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+divide(a^2 - b^2, a+b);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como el resto es 0, a+b divide a a^2-b^2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicios
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 1:
+Hallar el menor entero positivo n0 para el cual n! >= 2^n. Tomando el caso n0 como base de la inducción,
+demostrar que la desigualdad es cierta para todo n >= n0.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Si n! >= 2^n entonces n! - 2^n >= 0. 
+Hacemos una lista de los 10 primeros elementos de la secuencia:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(n!-2^n, n, 1, 10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ver que el menor entero positivo que cumple la desigualdad es positivo n = 4.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+4! - 2^4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si hacemos la lista de n elementos desde n=4:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(n!-2^n,n,4,14);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Observamos que cada vez los valores se van haciendo mayores por tanto, se cumple n >= n0.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 2.
+Hallar el valor apropiado de n0 como base de la inducción en los casos siguientes y demostrar que el
+enunciado es cierto para todo n >= n0:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+a) n^2 + 6*n + 8 >= 0
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Primero hacemos una lista con los primeros naturales para buscar n0:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(n^2 + 6*n + 8,n,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por tanto n0 = 1.
+Como n >= n0, n - n0 >= 0, es equivalente, por tanto restamos dos elementos consecutivos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(n+1)^2+6*(n+1)+8 - (n^2 + 6*n + 8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ver que 2*n + 7 > 0, por tanto n >= n0.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+b) n^3 >= 256*n^2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Tenemos que comprobar n^3 - 256*n^2 >= 0. Buscamos el n0:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(n^3-256*n^2,n,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ver que en ningún caso se cumple n^3 >= 256*n^2, por tanto, la propiedad no se cumple.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 3.
+Comprueba que el polinomio p(x) = x^2+x+41 produce números primos cuando x es un número natural
+comprendido entre 1 y 30. Puedes usar el comando factor que nos da la descomposición en primos
+de un número natural. ¿Es cierto que n^2 + n + 41 es primo para todo número natural n > 1?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Para comprobar si p(x) produce números primos hacemos una lista pasando como término general factor(p(x)) para que
+nos saque los elementos desde 1 a 30 con su descomposición en primos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(factor(x^2+x+41),x,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos ver que todos los elementos que produce son números primos entre 1 y 30.
+Para comprobar si siempre genera números primos hacemos hipótesis de inducción. 
+Restamos el término en n+1 y en n:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(n+1)^2+(n+1)+41 - (n^2+n+41);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos comprobar que 2*n+2 > 1. Por tanto n^2+n+41 es primo para todo número natural n>1.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

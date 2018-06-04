@@ -1,0 +1,29 @@
+called: g++
+	/home/gte/mgomez/docencia/informatica/2014-2015/metodologiaProgramacion/examenesPrevios/junio2012/ejercicio1
+	g++
+	-g
+	-c
+	-o
+	obj/prueba.o
+	src/prueba.cpp
+	-I./include
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2014-2015/metodologiaProgramacion/examenesPrevios/junio2012/ejercicio1
+	/usr/bin/g++
+	-g
+	-c
+	-I./include
+	-E
+	src/prueba.cpp
+
+called: /usr/bin/g++
+	/home/gte/mgomez/docencia/informatica/2014-2015/metodologiaProgramacion/examenesPrevios/junio2012/ejercicio1
+	/usr/bin/g++
+	-g
+	-c
+	-o
+	obj/prueba.o
+	src/prueba.cpp
+	-I./include
+

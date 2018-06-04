@@ -1,0 +1,161 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+divisors(8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Definir Algebra de Boole
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(n):=block([lisf,i,long],lisf:ifactors(n),long:length(lisf),
+if is(apply("*",makelist(lisf[i][2],i,1,long))=1)then true else false);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(2017);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo: Obtener todos los enteros 2 <= n <= 50 tales que D(n) es un algebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:setify(makelist(i,i,2,50));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:subset(X,esAB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(listify(Y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio 1: Obtener todos los enteros 100 <= n <= 400 tales que D(n) es un algebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X2:setify(makelist(i,i,100,400));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y2:subset(X2,esAB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(listify(Y2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio2: Obtener todos los enteros 100 <= n <= 400 tales que D(n) no es un algebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+FalseAB(n,m):=block([X,Y,i],
+X:setify(makelist(i,i,n,m)),
+Y:subset(X,esAB),
+Z:setdifference(X,Y),
+return(Z));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+FalseAB(100,400);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(graphs);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw_graph(cube_graph(2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Suponiendo qe D(m) y D(n) son álgebras de Boole, vamos a crear una función que nos diga si esos
+conjuntos son isomorfos o no
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+iso(m,n):=is(length(ifactors(m))=length(ifactors(n)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejemplo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+iso(51,155);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(51);factor(155);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio3: Compruebe que D(1741209542339) es un Ágebra de Boole, que d= 1399667 pertenece a la misma, y calcule los átomos que aparecen en la descomposición de d.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(d):=block([lis,long],lis:ifactors(d),long:length(lis),
+setify(makelist(lis[i][1],i,1,long)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(1741209542339);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+elementp(1399667,divisors(1741209542339));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(1388667);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+103*107*127;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejerccio4: Calcular el menor entero positivo n tal que D(n) es álgebra de Boole
+de cinco átomos y 10^5 <= n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+2*3*5*7*11;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(2310);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

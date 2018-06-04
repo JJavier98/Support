@@ -1,0 +1,6 @@
+g++ -g -c -o obj/prueba.o src/prueba.cpp -I./include
+g++ -g -c -o obj/entero.o -I./include src/entero.cpp
+src/entero.cpp:2:24: error fatal: biginteger.h: No existe el fichero o el directorio
+compilación terminada.
+Makefile:9: recipe for target 'entero.o' failed
+gmake: *** [entero.o] Error 1

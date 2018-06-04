@@ -1,0 +1,367 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: title   start ]
+Práctica 2. Recurrencia.
+Laura Tirado López
+1ºGII A3
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Sucesiones predefinidas
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Para poder usar las sucesiones predefinidas en maxima necesitamos cargar el paquete "functs":
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(functs);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Función arithmetic(a,d,n): devuelve el n-ésimo valor de una rogresión aritmética:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+arithmetic(2,3,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Función geometric(a,r,n): devuelve el n-ésimo valor de una progresión geométrica:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+geometric(3,5,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Función harmonic(a,b,c,n): devuelve el n-ésimo valor de una progresión armónica:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+harmonic(3,2,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Función arithsum(a,d,n): devuelve la suma de la progresión aritmética hasta el n-ésimo término:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+arithsum(2,3,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si queremos sumar lo números naturales pasamos como parámetros (1,1,n):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+arithsum(1,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Función geosum(a,r,n): devuelve la suma de la progresión geométrica hasta el n-ésimo término. Sólo se usa
+cuando la razón en valor absoluto es menor que 1, |r|<1, porque si no devuelve infinito:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+geosum(3,1/5,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos usar el comando makelist para que nos muestre los términos de una sucesión.
+
+        makelist(sucesión hasta i, i, primer elemento, último elemento)
+
+Por ejemplo, los 10 primeros términos de la sucesión geométrica de razón 1/4 serían:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(geosum(1,1/4,i),i,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Recurrencia
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Una sucesión está definida por recurrencia si la descripción de un término, a[n], viene dada como función
+de un número determinado de términos anteriores: a[n-1],...,a[n-t]. Entonces tendremos una ecuación de
+la forma:
+
+            a[n] = f1*a[n-1]+...+ft*a[n-t]+f[t+1]
+
+Si el coeficiente independiente f[t+1] = 0 decimos que es una relación de recurrencia homogénea. 
+t es el grado de relación de la recurrencia.
+Si cada fi es una constante decimos que la relación de recurrencia tiene coeficientes constantes.
+Para poder determinar completamente una relación de recurrencia de grado t es necesario dar t valores iniciales,
+es decir, t valores consecutivos de la sucesión para poder calcular los siguientes términos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Una sucesión típica definida por recurrencia es la sucesión de Fibonacci:
+                    a[n] = a[n-1]+a[n-2]
+                    a0 = 0
+                    a1 = 1
+Es una relación de recurrencia homogénea de grado 2 y tiene coeficientes constantes. 
+En maxima está definia por fib(a[n]):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fib(5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fib(6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fib(10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Hacemos una lista de los 15 primeros elementos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(fib(i),i,0,15);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos definir sucesiones por recurrencia en maxima. 
+En este caso, nuestra sucesión va a ser de grado 1, no tiene coeficientes coeficientes constantes y no es 
+homogénea:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A0:4$  /*valor inicial*/
+A[n] := if n>0 then F(n)*A[n-1]+G(n) else A0$   /*definimos la relación*/
+F(n) := n^2$    /*coeficientes*/
+G(n) := 2*n+1$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Con los paréntesis definimos que no es necesario conocer términos anteriores para calcular un término n, como en el 
+caso de las funciones.
+Con los corchetes definimos que es necesario conocer términos anteriores para calcular un término n, como en las
+sucesiones de recurrencia.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(A[n],n,0,4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Halla una relación de recurrencia que genere la siguiente sucesión:
+                {1,2,5,12,29,70,169...}
+define la correspondiente función recursiva en maxima. Calcula los primeros 7 términos y comprueba
+que tu propuesta es acertada.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A0:1$ 
+A1:2$
+A[n]:= if n>1 then 2*A[n-1]+A[n-2] else if n>0 then A1 else A0$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(A[n],n,0,7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Resolución de relaciones de recurrencia
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Una relación de recurrencia, o ecuación de recurrencia, es una igualdad en la que se relaciona un término 
+de una sucesión a[n] con algunos de los términos que lo preceden. Una solución de una relación de recurrencia 
+es una sucesión que verifique dicha relación.
+Maxima utiliza el paquete solve_rec para la resolución de ecuaciones de recurrencia:
+        solve_rec(ecuación de recurrencia, término general, primeros valores)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=a[k-1]+a[k-2], a[k], a[1]=1, a[2]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+También puede usarse de forma general sin necesidad de conocer los primeros términos de la relación:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-1], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 1
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Halla la solución para la relación de recurrencua que has propuesto en el ejercicio de la sección anterior, con 
+las condiciones iniciales correspondientes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n] = 2*a[n-1]+a[n-2],a[n],a[0]=1,a[1]=2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 2
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Decide si son lineales, homogéneas y de coeficientes constantes las siguientes relaciones. Resuélvelas con los valores
+iniciales que se proporcionan.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+a) a[n] = 2*n*a[n-1]; a[1]= 1
+Es lineal, homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n] = 2*n*a[n-1],a[n],a[1]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+b) a[n] = 7*a[n-2]-6*a[n-3]; a[1]=0; a[2]=1; a[3]=1;
+Es lineal, homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(a);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n] = 7*a[n-2]-6*a[n-3],a[n],a[1]=0, a[2]=1, a[3]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+c) a[n] = 2*n*a[n-1]; a[1]= 1
+Es lineal, homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(a);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n] = 2*n*a[n-1],a[n],a[1]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 3
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+A continuación obtenemos las soluciones de otros tipos de relaciones con coeficientes constantes.
+Decide de qué tipo son.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Lineal, no homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-1]+b,a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lineal, homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lineal, no homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1]+d, a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lineal, homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=k*a[k-1], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lineal, no homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=a[k-1]+(k-1), a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lineal, no homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]*a[k-1]=c, a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lineal, no homogénea y de coeficientes constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=a[k-1]*a[k-2], a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+a[k] = c*a[k-2]+b*a[k-1]
+Polinomio asociado:
+a^2=c*1+b*a -> a^2-a*b-c=0
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s1:solve([a^2-a*b-c=0], [a]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a1:rhs(s1[1]);
+a2:rhs(s1[2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+a[k]=k*a[k-1]
+Polinomio asociado:
+a=k*1 -> a-k=0
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+s2:solve([a-k=0], [a]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a3:rhs(s2[1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Las raíces del polinomio asociado nos permiten calcular las soluciones de la relación de recurrencia.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

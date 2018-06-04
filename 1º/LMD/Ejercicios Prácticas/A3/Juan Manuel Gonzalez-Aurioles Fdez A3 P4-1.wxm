@@ -1,0 +1,104 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+load("D:/Universidad/2 Cuatrimestre/LMD/Prácticas/Práctica 4 LMD 13_14/pr4.mac")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Ejercicio
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:[24,30,56,70,105,189,250,3993];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist([print("Diagrama de Hasse de ",A[n]),Hasse((A[n]))],n,1,8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista:[24,30,56,70,105,189,250,3993];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(lista);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Dados dos enteros positivos observamos que son isomorfos si al descomponerlos en producto de factores primos presentan
+la misma estructura.Como ejemplo 24 y 189
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: section start ]
+Ejercicio
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+D:[6,12,24,30,36,37];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Divisores
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist([D[n],divisors(D[n])],n,1,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Complementados
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist([D[n],complementados(D[n])],n,1,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Factorización
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist([D[n],factor(D[n])],n,1,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por la definición de complementado, un elemento d perteneciente a un conjunto de divisores D(n) es complementado 
+si existe un elemento b en ese conjunto tal que mcm(d,b) = n y mcd(d,b) = 1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+En el conjunto de los divisores, ese complemento es n/d
+Por ejemplo, en D(30), 5 es un complementado porque su complemento, 30/5 = 6, verifica mcm(5,6) = 30 y mcd(5,6) = 1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: section start ]
+Ejercicio
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+El comando atomos es un conjunto de divisores los átomos son los divisores primos de n
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Por lo tanto, n de D(n) con 10 átomos tendrá 10 divisores primos
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+2*3*5*7*11*13*17*19*23*29;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(6469693230);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

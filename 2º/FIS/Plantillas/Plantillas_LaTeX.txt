@@ -1,0 +1,5 @@
+Si quereis las plantillas en LaTeX aquí las teneis.
+
+Si os son utiles o os molan dadme una estrellica en Github al repo, que no sirben para nada pero quedan guay xD
+
+https://github.com/Koltharius/UGR_Plantillas_Practicas_FIS

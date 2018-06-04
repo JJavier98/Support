@@ -1,0 +1,2 @@
+datos1 contiene una matriz de 5 filas y 3 columnas
+masdatos contiene una matriz de 4 filas y 6 columnas
